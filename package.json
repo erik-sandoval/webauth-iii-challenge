@@ -6,8 +6,8 @@
   "author": "erik-sandoval <erik.sandoval@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "start" : "node index.js",
-    "server": "nodemon"
+    "start": "node index.js",
+    "server": "nodemon index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
