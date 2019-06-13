@@ -6,7 +6,10 @@ exports.up = function(knex, Promise) {
       .notNullable()
       .unique();
     table.string('password').notNullable();
-    table.string('department');
+    table
+      .string('department')
+      .defaultTo('student')
+      .notNullable();
   });
 };
 

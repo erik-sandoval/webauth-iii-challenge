@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const verifyLogin = require('../auth/verifyLogin')
 
 const Users = require('./users-model');
 
-router.get('/', (req, res) => {
+router.get('/', verifyLogin, (req, res) => {
   Users.grab()
     .then(users => {
       res.status(200).json(users);
