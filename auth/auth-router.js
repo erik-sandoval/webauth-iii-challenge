@@ -17,7 +17,7 @@ router.post('/register', (req, res) => {
 
   User.createUser(req.body)
     .then(user => {
-      res.status(200).json({ message: 'user successfully created', user });
+      res.status(200).json({ message: 'user successfully created' });
     })
     .catch(err => {
       res.status(500).json(err);
