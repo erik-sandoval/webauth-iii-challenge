@@ -2,7 +2,8 @@ const db = require('../database/knexConfig');
 
 module.exports = {
   createUser,
-  grab
+  grab,
+  login
 };
 
 function createUser(user) {
@@ -11,4 +12,10 @@ function createUser(user) {
 
 function grab() {
   return db('users');
+}
+
+function login(username) {
+  return db('users')
+    .where({username})
+    .first();
 }
