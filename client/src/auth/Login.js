@@ -1,14 +1,35 @@
 import React from 'react';
+import axios from 'axios';
 
 class Login extends React.Component {
   state = {
     username: '',
-    password: ''
+    password: '',
+    token: [],
+    message: []
+  };
+
+  login = (e, state) => {
+    e.preventDefault();
+    axios
+      .post('http://localhost:5000/api/auth/login', state)
+      .then(res => {
+        console.log(res.data);
+        localStorage.setItem('token', res.data.token)
+        this.setState({
+          token: res.data.token,
+          message: res.data.message
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          message: err.response.data
+        });
+      });
   };
 
   handleChange = e => {
-    console.log(e.target.value);
-
     this.setState({
       ...this.state,
       [e.target.name]: e.target.value
@@ -16,11 +37,12 @@ class Login extends React.Component {
   };
 
   render() {
+    console.log(this.state)
     return (
       <div>
         <h1>Login</h1>
 
-        <form>
+        <form onSubmit={e => this.login(e, this.state)}>
           Username:
           <input
             type="text"
@@ -35,6 +57,7 @@ class Login extends React.Component {
             value={this.state.password}
             onChange={this.handleChange}
           />
+          <button>Submit</button>
         </form>
       </div>
     );
