@@ -14,8 +14,7 @@ class Login extends React.Component {
     axios
       .post('http://localhost:5000/api/auth/login', state)
       .then(res => {
-        console.log(res.data);
-        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('token', res.data.token);
         this.setState({
           token: res.data.token,
           message: res.data.message
@@ -37,7 +36,6 @@ class Login extends React.Component {
   };
 
   render() {
-    console.log(this.state)
     return (
       <div>
         <h1>Login</h1>
