@@ -1,20 +1,25 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 
+import Login from './auth/Login';
+import Register from './auth/Register';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <nav>
-        <Link to="/">Login</Link>
-        <Link to="/login">Register</Link>
-        <Link to="/register">Users</Link>
-      </nav>
+class App extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <nav>
+          <Link to="/">Users</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
+        </nav>
 
-      <Route exact path="/" />
-    </div>
-  );
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+      </div>
+    );
+  }
 }
 
 export default App;
